@@ -8,9 +8,6 @@ function App() {
   const [dice, setDice] = React.useState(createDice())
   const [tenzies, setTenzies] = React.useState(false)
 
-  //Win if:
-  //All dice are held and
-  // all dice are the same number
   React.useEffect(() => {
     let tempValue = dice[0].value
     const allIsHeld = dice.every(die => die.isHeld === true)
@@ -65,6 +62,10 @@ function App() {
     <div>
       <div className="tenzies-container">
         {tenzies && <Confetti />}
+        <h1>Tenzies</h1>
+        <p>Roll until all dice are the same. Click each die to freeze
+          it at its current value between rolls.
+        </p>
         <div className="dice-layout">{diceElements}</div>
         <button className="roll-button" onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>
       </div>
