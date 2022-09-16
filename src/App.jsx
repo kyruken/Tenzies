@@ -31,10 +31,10 @@ function App() {
 
   return (
     <div>
-      <div className="tenzies">
-        {diceElements}
+      <div className="tenzies-container">
+        <div className="dice-layout">{diceElements}</div>
+        <button>Roll</button>
       </div>
-
     </div>
   )
 }

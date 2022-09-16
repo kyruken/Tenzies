@@ -5,21 +5,27 @@
   text-align: center;
 }
 
-.tenzies {
+.tenzies-container {
   background-color: #fff;
-  display: grid;
-  align-content: center;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  grid-template-areas: 
-  "die die die die die"
-  "die die die die die";
-  gap: 32px;
+  align-items: center;
+  gap: 64px;
   height: 800px;
 }
 
+.dice-layout {
+  display: grid;
+  grid-template-areas:
+  "dice dice dice dice dice"
+  "dice dice dice dice dice";
+  gap: 32px;
+}
+
 .die {
-  width: 75px;
-  height: 75px;
+  width: 100px;
+  height: 100px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 3.81277px;
 }
