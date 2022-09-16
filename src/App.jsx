@@ -9,19 +9,29 @@ function App() {
   function createDice() {
     const newDice = [{}]
     for (let x = 0; x < 10; x++) {
-     newDice[x] = {
+     newDice[x] = generateNewDie();
+    }
+    return newDice;
+  }
+
+  function generateNewDie() {
+    return {
       value: Math.floor(Math.random() * 6) + 1,
       isHeld: false,
       id: nanoid()
-    };
     }
-    return newDice;
   }
 
   console.log(dice)
   function holdDie(dieId) {
     setDice(prevDice => prevDice.map(die => {
       return die.id === dieId ?  {...die, isHeld: !die.isHeld} : die
+    }))
+  }
+
+  function rollDice() {
+    setDice(prevDice => prevDice.map(die => {
+      return die.isHeld ? die : generateNewDie();
     }))
   }
 
@@ -33,7 +43,7 @@ function App() {
     <div>
       <div className="tenzies-container">
         <div className="dice-layout">{diceElements}</div>
-        <button>Roll</button>
+        <button className="roll-button" onClick={rollDice}>Roll</button>
       </div>
     </div>
   )
