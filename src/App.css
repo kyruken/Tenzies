@@ -1,3 +1,11 @@
+
+/* Resets */
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -5,13 +13,16 @@
   text-align: center;
 }
 
+.instruction-text {
+  width: 50%;
+}
 .tenzies-container {
   background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 64px;
+  gap: 32px;
   height: 800px;
 }
 
@@ -39,9 +50,10 @@
   box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
   border-radius: 3.81277px;
   color: #fff;
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Karla, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 600;
   font-size: 20px;
+  margin-top: 16px;
   width: 125px;
   height: 75px;
 }
