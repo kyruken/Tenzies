@@ -12,21 +12,21 @@ function App() {
      newDice[x] = {
       value: Math.floor(Math.random() * 6) + 1,
       isHeld: false,
-      key: nanoid()
+      id: nanoid()
     };
     }
     return newDice;
   }
 
+  console.log(dice)
   function holdDie(dieId) {
     setDice(prevDice => prevDice.map(die => {
-      return die.id === dieId ?  die.isHeld = !die.isHeld : die
+      return die.id === dieId ?  {...die, isHeld: !die.isHeld} : die
     }))
   }
 
-  console.log(dice)
   const diceElements = dice.map(die => {
-    return <Die value={die.value} key={die.key} holdDie={holdDie} id={die.key} isHeld={die.isHeld}/>
+    return <Die value={die.value} key={die.key} holdDie={() => holdDie(die.id)} id={die.key} isHeld={die.isHeld}/>
   })
 
   return (
