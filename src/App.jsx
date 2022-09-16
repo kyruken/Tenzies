@@ -2,9 +2,11 @@ import React from 'react'
 import Die from './assets/Die'
 import './App.css'
 import {nanoid} from 'nanoid'
+import Confetti from 'react-confetti'
 
 function App() {
   const [dice, setDice] = React.useState(createDice())
+  const [tenzies, setTenzies] = React.useState(false)
 
   //Win if:
   //All dice are held and
@@ -14,6 +16,7 @@ function App() {
     const allIsHeld = dice.every(die => die.isHeld === true)
     const allSameNumber = dice.every(die => tempValue === die.value)
     if (allIsHeld === true && allSameNumber === true) {
+      setTenzies(true)
       console.log("you won!")
     }
 
@@ -43,9 +46,15 @@ function App() {
   }
 
   function rollDice() {
-    setDice(prevDice => prevDice.map(die => {
-      return die.isHeld ? die : generateNewDie();
-    }))
+    if (tenzies === true) {
+      setTenzies(false)
+      setDice(createDice())
+    }
+    else {
+      setDice(prevDice => prevDice.map(die => {
+        return die.isHeld ? die : generateNewDie();
+      }))
+    }
   }
 
   const diceElements = dice.map(die => {
@@ -55,8 +64,9 @@ function App() {
   return (
     <div>
       <div className="tenzies-container">
+        {tenzies && <Confetti />}
         <div className="dice-layout">{diceElements}</div>
-        <button className="roll-button" onClick={rollDice}>Roll</button>
+        <button className="roll-button" onClick={rollDice}>{tenzies ? "New Game" : "Roll"}</button>
       </div>
     </div>
   )
