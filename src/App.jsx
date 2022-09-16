@@ -6,6 +6,19 @@ import {nanoid} from 'nanoid'
 function App() {
   const [dice, setDice] = React.useState(createDice())
 
+  //Win if:
+  //All dice are held and
+  // all dice are the same number
+  React.useEffect(() => {
+    let tempValue = dice[0].value
+    const allIsHeld = dice.every(die => die.isHeld === true)
+    const allSameNumber = dice.every(die => tempValue === die.value)
+    if (allIsHeld === true && allSameNumber === true) {
+      console.log("you won!")
+    }
+
+  }, [dice])
+
   function createDice() {
     const newDice = [{}]
     for (let x = 0; x < 10; x++) {
